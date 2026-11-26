@@ -28,10 +28,11 @@ test('calibration and cents',()=> {
   assert.ok(Math.abs(noteFor(442,442).cents)<.001);
   assert.ok(Math.abs(noteFor(440*2**(17/1200)).cents-17)<.001);
 });
-test('quarter-note BPM and eighth-note meter',()=> {
-  assert.equal(beatDuration(120,4),.5); assert.equal(beatDuration(120,8),.25);
-  assert.equal(beatDuration(90,8)*3,1);
+test('BPM measures the musical beat',()=> {
+  assert.equal(beatDuration(120), .5);
+  assert.equal(beatDuration(60), 1);
 });
+
 test('all instrument keys map their sounding pitch to written C', () => {
   for (let transpose = 0; transpose < 12; transpose++) {
     const hz = 440 * 2 ** ((72 - transpose - 69) / 12);

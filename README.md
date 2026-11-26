@@ -6,7 +6,7 @@ An iPhone-first, dependency-free metronome and single-note chromatic tuner, with
 
 ## Features
 
-- Audio-clock metronome: 30–240 quarter notes/min, tap tempo (four-tap start, rolling average of eight intervals), time signatures, subdivisions, downbeat and compound-meter group accents.
+- Audio-clock metronome: 30–240 beats/min, tap tempo (four-tap start, rolling average of eight intervals), time signatures, subdivisions, downbeat accents and full-volume clicks.
 - YIN pitch detection, roughly 80–1600 Hz; cents meter, stable-note median filtering, written note names for all 12 instrument keys, or concert pitch (C), concert A calibration 430–450 Hz.
 - Offline-capable installable PWA, saved preferences, optional screen wake lock.
 - Explicit microphone stop, interruption handling, no analytics, no third-party assets or dependencies.
@@ -17,7 +17,7 @@ Open in Safari, tap Start or Enable microphone, and allow microphone access. Sha
 
 Use one sustained note, with some space between the bell and microphone. Bluetooth can add latency and alter microphone processing. Note names can be transposed; the Hz reading always represents sounding pitch. In B♭ mode concert B♭3 displays written C4. In E♭ mode concert E♭4 displays written C5. ±5 cents is marked in tune.
 
-BPM always means quarter notes. In compound meters, clicks/lights are eighth notes grouped in threes. Dotted-quarter 60 equals quarter-note BPM 90.
+BPM follows the musical pulse: quarter notes in simple meters, dotted quarters in 6/8, 9/8 and 12/8 (two, three and four beats per bar). Settings change without stopping playback; a time-signature change starts a fresh bar at the next scheduled click. Tempo and subdivision changes take effect on the next beat without resetting the bar. Device volume is never changed.
 
 ## Development
 

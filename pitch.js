@@ -39,7 +39,6 @@ export function noteFor(hz, reference = 440, transpose = 0) {
   const names = ['C', 'C♯', 'D', 'E♭', 'E', 'F', 'F♯', 'G', 'A♭', 'A', 'B♭', 'B'];
   return { name: names[((written % 12) + 12) % 12], octave: Math.floor(written / 12) - 1, cents: (exact - midi) * 100, midi };
 }
-export function beatDuration(bpm, denominator = 4) {
-  // BPM always denotes quarter notes; eighth-note meters therefore click twice as fast.
-  return 60 / bpm * 4 / denominator;
+export function beatDuration(bpm) {
+  return 60 / bpm;
 }

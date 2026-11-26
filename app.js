@@ -1,9 +1,9 @@
-import { detectPitch, noteFor, beatDuration } from './pitch.js';
-import { createTapTempo } from './tempo.js';
+import { detectPitch, noteFor } from './pitch.js';
+import { createTapTempo, beatsPerBar, createBeatCursor } from './tempo.js';
 const tapTempo = createTapTempo();
 const $ = id => document.getElementById(id);
 let context, running = false, listening = false, starting = false, timer, frame, stream, source, analyser, wake;
-let nextTime = 0, step = 0, queue = [], voices = new Set(), recent = [], lastHeard = 0, lastNote = '';
+let nextTime = 0, cursor = createBeatCursor(), queue = [], voices = new Set(), recent = [], lastHeard = 0, lastNote = '';
 let tunerGeneration = 0;
 const notice = text => { $('notice').textContent = text; };
 const config = () => ({ bpm: Number($('bpm').value), meter: $('meter').value.split(',').map(Number), subdivision: Number($('subdivision').value) });
@@ -43,10 +43,10 @@ async function keepAwake() {
 function releaseWake() { if (wake) { wake.release().catch(() => {}); wake = null; } }
 function beats() {
   const {meter:[count,denominator]} = config();
-  $('beats').replaceChildren(...Array.from({length:count}, (_, i) => {
-    const el = document.createElement('span'); el.className = 'beat' + ((i === 0 || (denominator === 8 && i % 3 === 0)) ? ' down' : ''); return el;
+  $('beats').replaceChildren(...Array.from({length:beatsPerBar([count,denominator])}, (_, i) => {
+    const el = document.createElement('span'); el.className = 'beat' + ((i === 0) ? ' down' : ''); return el;
   }));
-  $('meter-hint').textContent = denominator === 8 ? 'Eighth-note beats · groups of 3' : 'Quarter-note beats';
+  $('meter-hint').textContent = denominator === 8 ? 'Dotted-quarter beats' : 'Quarter-note beats';
 }
 function tempo(value) {
   const n = Number(value);
@@ -59,25 +59,22 @@ function click(time, beat, sub) {
   const osc = context.createOscillator(), gain = context.createGain();
   const accented = $('accent').checked;
   const strong = accented && sub === 0 && beat === 0;
-  const group = accented && sub === 0 && config().meter[1] === 8 && beat % 3 === 0;
-  osc.frequency.value = strong ? 1500 : group ? 1200 : sub === 0 ? 1000 : 700;
+  osc.frequency.value = strong ? 1500 : sub === 0 ? 1000 : 700;
   gain.gain.setValueAtTime(0, time);
-  gain.gain.linearRampToValueAtTime(sub === 0 ? 0.35 : 0.14, time + 0.002);
-  gain.gain.exponentialRampToValueAtTime(0.001, time + 0.035);
+  gain.gain.linearRampToValueAtTime(sub === 0 ? 1 : 0.65, time + 0.002);
+  gain.gain.exponentialRampToValueAtTime(0.001, time + 0.055);
   osc.connect(gain); gain.connect(context.destination);
   voices.add(osc); osc.onended = () => { voices.delete(osc); osc.disconnect(); gain.disconnect(); };
-  osc.start(time); osc.stop(time + 0.04);
+  osc.start(time); osc.stop(time + 0.06);
 }
 function schedule() {
   if (!running) return;
-  const {bpm,meter:[count,denominator],subdivision} = config();
   if (nextTime < context.currentTime) nextTime = context.currentTime + 0.02; // Never burst overdue clicks.
   while (nextTime < context.currentTime + 0.12) {
-    const beat = Math.floor(step / subdivision) % count, sub = step % subdivision;
+    const {beat, sub, duration} = cursor(config());
     click(nextTime, beat, sub);
     if (!sub) queue.push({time:nextTime,beat});
-    nextTime += beatDuration(bpm, denominator) / subdivision;
-    step = (step + 1) % (count * subdivision);
+    nextTime += duration;
   }
 }
 function paint() {
@@ -102,7 +99,7 @@ $('start').onclick = async () => {
   try {
     await audio();
     if (document.hidden) return;
-    tempo($('bpm').value); stopTuner(); running = true; step = 0; nextTime = context.currentTime + 0.06;
+    tempo($('bpm').value); stopTuner(); running = true; cursor = createBeatCursor(); nextTime = context.currentTime + 0.06;
     $('start').textContent = 'Stop metronome'; $('start').classList.add('running'); notice('Keep this app visible and your phone unlocked.');
     schedule(); timer = setInterval(schedule,25); paint(); keepAwake();
   } catch (e) { notice(e.message); } finally { starting = false; }
@@ -116,7 +113,8 @@ $('tap').onclick = () => {
   if (result.bpm !== null) tempo(result.bpm);
   $('tap').textContent = result.count < 4 ? `Tap tempo · ${result.count}/4` : 'Tap tempo';
 };
-for (const id of ['meter','subdivision']) $(id).onchange = () => { stopMetronome(); beats(); save(); };
+$('meter').onchange = () => { queue = []; beats(); save(); };
+$('subdivision').onchange = save;
 $('accent').onchange = save;
 for (const name of ['metronome','tuner']) $('tab-' + name).onclick = () => {
   stopMetronome(); stopTuner(); notice('');
