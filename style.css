@@ -7,3 +7,6 @@
 @media(max-width:350px){.tempo input{font-size:84px;letter-spacing:-7px}.tempo label{left:-3px;font-size:7px}.settings{gap:8px}.settings label{padding:8px 10px 0}.check span{margin-left:29px}.primary,.secondary{font-size:12px}.serial{font-size:7px}.brand{font-size:13px}}
 @media(max-height:640px) and (max-width:699px){#tuner .note{font-size:84px;min-height:92px;margin-top:0}#tuner .pitch-detail{margin-bottom:8px}#tuner .gauge{height:28px}#tuner .needle{height:34px}#tuner .tuning-status{font-size:11px;min-height:28px}.full{margin-top:10px}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* Keep gestures available for scrolling, not accidental practice-time zoom. */
+html{touch-action:pan-x pan-y}input,select{font-size:max(16px,1em)}

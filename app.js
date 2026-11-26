@@ -202,3 +202,32 @@ document.addEventListener('visibilitychange',() => { if (document.hidden) { cons
 window.addEventListener('pagehide',() => {stopMetronome(); stopTuner();});
 beats(); tempo($('bpm').value); transposition();
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js').catch(() => {});
+
+// Explicit refresh also works in standalone iPhone windows without browser chrome.
+$('refresh-app').onclick = async () => {
+  stopMetronome(); stopTuner();
+  const button = $('refresh-app'); button.disabled = true; button.textContent = 'Refreshing…';
+  if (!navigator.onLine) { button.disabled = false; button.textContent = 'Refresh app'; notice('Connect to the internet to refresh the app.'); return; }
+  const reload = () => { const url = new URL(location.href); url.searchParams.set('refresh', Date.now()); location.replace(url); };
+  try {
+    const registration = await navigator.serviceWorker?.getRegistration();
+    if (registration) {
+      await registration.update();
+      if (registration.installing) await new Promise(resolve => {
+        const worker = registration.installing;
+        worker.addEventListener('statechange', () => { if (['installed','redundant'].includes(worker.state)) resolve(); });
+        setTimeout(resolve, 5000);
+      });
+      if (registration.waiting) {
+        const worker = registration.waiting;
+        await new Promise(resolve => {
+          worker.addEventListener('statechange', () => { if (worker.state === 'activated') resolve(); });
+          worker.postMessage('ACTIVATE_UPDATE'); setTimeout(resolve, 5000);
+        });
+      }
+    }
+    reload();
+  } catch { button.disabled = false; button.textContent = 'Refresh app'; notice('Could not check for an update. Check your connection and try again.'); }
+};
+// iOS standalone may ignore viewport zoom limits; cancel its pinch gesture too.
+document.addEventListener('gesturestart', event => event.preventDefault(), {passive:false});
