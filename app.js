@@ -119,8 +119,14 @@ for (const id of ['meter','subdivision']) $(id).onchange = () => { stopMetronome
 $('accent').onchange = save;
 for (const name of ['metronome','tuner']) $('tab-' + name).onclick = () => {
   stopMetronome(); stopTuner(); notice('');
-  for (const n of ['metronome','tuner']) { $(n).hidden = n !== name; $('tab-' + n).classList.toggle('active',n === name); $('tab-' + n).setAttribute('aria-selected',String(n === name)); }
+  for (const n of ['metronome','tuner']) { $(n).hidden = n !== name; $('tab-' + n).classList.toggle('active',n === name); $('tab-' + n).setAttribute('aria-selected',String(n === name)); $('tab-' + n).tabIndex = n === name ? 0 : -1; }
 };
+document.querySelector('[role=tablist]').addEventListener('keydown', event => {
+  if (!['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) return;
+  event.preventDefault();
+  const target = event.key === 'Home' ? 'metronome' : event.key === 'End' ? 'tuner' : $('metronome').hidden ? 'metronome' : 'tuner';
+  $('tab-' + target).focus(); $('tab-' + target).click();
+});
 function emptyPitch() {
   $('note').replaceChildren(document.createTextNode('—'));
   $('pitch-detail').textContent = 'One clear, steady note.'; $('needle').style.opacity = '0';

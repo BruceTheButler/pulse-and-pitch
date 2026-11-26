@@ -12,8 +12,8 @@
 <main>
 <header><a class="brand" href="./" aria-label="Brass home"><span class="brand-mark">♮</span> brass<span class="brand-dot">.</span></a><span class="eyebrow">A LITTLE EVERY DAY</span></header>
 <div class="intro"><p class="eyebrow">YOUR POCKET PRACTICE COMPANION</p><h1>Find your rhythm.<br><em>Find your sound.</em></h1></div>
-<nav aria-label="Practice tools"><button id="tab-metronome" class="tab active" aria-selected="true" aria-controls="metronome" role="tab">Metronome</button><button id="tab-tuner" class="tab" aria-selected="false" aria-controls="tuner" role="tab">Tuner</button></nav>
-<section id="metronome" class="panel" aria-labelledby="tab-metronome">
+<nav aria-label="Practice tools" role="tablist"><button id="tab-metronome" class="tab active" aria-selected="true" aria-controls="metronome" role="tab">Metronome</button><button id="tab-tuner" class="tab" tabindex="-1" aria-selected="false" aria-controls="tuner" role="tab">Tuner</button></nav>
+<section id="metronome" class="panel" role="tabpanel" aria-labelledby="tab-metronome">
 <div id="beats" class="beats" aria-hidden="true"></div>
 <div class="tempo"><button id="slower" class="round" aria-label="Decrease tempo">−</button><div><label for="bpm" class="eyebrow">QUARTER NOTES / MIN</label><input id="bpm" type="number" min="30" max="240" value="100" inputmode="numeric"><span id="tempo-word">Andante</span></div><button id="faster" class="round" aria-label="Increase tempo">+</button></div>
 <label class="sr-only" for="tempo-slider">Tempo</label><input id="tempo-slider" type="range" min="30" max="240" value="100">
@@ -22,7 +22,7 @@
 <div class="actions"><button id="tap" class="secondary">Tap tempo</button><button id="start" class="primary">Start metronome</button></div>
 <p class="hint">Timing comes from the audio clock, not the animation.</p>
 </section>
-<section id="tuner" class="panel" aria-labelledby="tab-tuner" hidden>
+<section id="tuner" class="panel" role="tabpanel" aria-labelledby="tab-tuner" hidden>
 <div class="tuner-top"><span class="eyebrow">CHROMATIC TUNER</span><span id="listening" class="badge">MIC OFF</span></div>
 <div class="note" id="note">—<sub></sub></div><p id="pitch-detail" class="pitch-detail">One clear, steady note.</p>
 <div class="gauge" aria-hidden="true"><div class="sweet-spot"></div><div class="gauge-center"></div><div id="needle" class="needle"></div></div><div class="gauge-labels"><span>−50 ♭</span><span>IN TUNE</span><span>♯ +50</span></div>

@@ -1,4 +1,4 @@
-const CACHE = 'brass-v1';
+const CACHE = 'brass-v2';
 const ASSETS = ['./','./index.html','./style.css','./app.js','./pitch.js','./manifest.webmanifest','./icon.svg','./icon-192.png','./icon-512.png'];
 self.addEventListener('install', event => { event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS))); });
 self.addEventListener('activate', event => { event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key.startsWith('brass-') && key !== CACHE).map(key => caches.delete(key))))); });
