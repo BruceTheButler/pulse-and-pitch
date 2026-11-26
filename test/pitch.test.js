@@ -32,3 +32,14 @@ test('quarter-note BPM and eighth-note meter',()=> {
   assert.equal(beatDuration(120,4),.5); assert.equal(beatDuration(120,8),.25);
   assert.equal(beatDuration(90,8)*3,1);
 });
+test('all instrument keys map their sounding pitch to written C', () => {
+  for (let transpose = 0; transpose < 12; transpose++) {
+    const hz = 440 * 2 ** ((72 - transpose - 69) / 12);
+    const result = noteFor(hz,440,transpose);
+    assert.equal(result.name,'C');
+    assert.equal(result.octave,5);
+    assert.ok(Math.abs(result.cents)<0.001);
+  }
+  assert.equal(noteFor(174.614116,440,7).name,'C'); // F3 -> written C4 (horn)
+  assert.equal(noteFor(174.614116,440,7).octave,4);
+});

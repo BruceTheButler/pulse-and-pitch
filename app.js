@@ -194,7 +194,8 @@ $('listen').onclick = async () => {
   } finally { if (generation === tunerGeneration) $('listen').disabled = false; }
 };
 function transposition() {
-  $('transpose-hint').textContent = ({2:'Concert B♭ is shown as written C.',0:'Note names match the actual sounding pitch.',9:'Concert E♭ is shown as written C.'})[$('transpose').value];
+  const key = $('transpose').selectedOptions[0].textContent;
+  $('transpose-hint').textContent = Number($('transpose').value) === 0 ? 'Note names match concert pitch.' : `Concert ${key} is shown as written C.`;
   recent = []; emptyPitch(); save();
 }
 $('transpose').onchange = transposition;
