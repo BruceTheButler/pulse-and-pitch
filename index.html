@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#16162b"><meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#171916"><meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="description" content="A pocket practice companion: precise metronome and private, on-device chromatic tuner.">
 <meta property="og:type" content="website"><meta property="og:title" content="Pulse &amp; Pitch"><meta property="og:description" content="Find your rhythm. Find your sound. Your pocket metronome and chromatic tuner."><meta property="og:image" content="https://brucethebutler.github.io/pulse-and-pitch/assets/social-banner.png"><meta name="twitter:card" content="summary_large_image">
@@ -11,17 +11,16 @@
 </head>
 <body>
 <main>
-<header><a class="brand" href="./" aria-label="Pulse and Pitch home"><img class="brand-icon" src="icon.svg" alt=""> pulse<span class="brand-dot">&</span>pitch</a><span class="eyebrow">STAY IN THE GROOVE</span></header>
-<div class="intro"><p class="eyebrow">YOUR POCKET PRACTICE COMPANION</p><h1>Find your rhythm.<br><em>Find your sound.</em></h1></div>
+<header><a class="brand" href="./" aria-label="Pulse and Pitch home"><img class="brand-icon" src="icon.svg" alt=""><span>PULSE<span class="brand-dot">/</span>PITCH</span></a><span class="serial" aria-hidden="true">P—01<br>POCKET INSTRUMENT</span></header>
 <nav aria-label="Practice tools" role="tablist"><button id="tab-metronome" class="tab active" aria-selected="true" aria-controls="metronome" role="tab">Metronome</button><button id="tab-tuner" class="tab" tabindex="-1" aria-selected="false" aria-controls="tuner" role="tab">Tuner</button></nav>
 <section id="metronome" class="panel" role="tabpanel" aria-labelledby="tab-metronome">
 <div id="beats" class="beats" aria-hidden="true"></div>
 <div class="tempo"><button id="slower" class="round" aria-label="Decrease tempo">−</button><div><label for="bpm" class="eyebrow">BEATS / MIN</label><input id="bpm" type="number" min="30" max="240" value="100" inputmode="numeric"><span id="tempo-word">Andante</span></div><button id="faster" class="round" aria-label="Increase tempo">+</button></div>
 <label class="sr-only" for="tempo-slider">Tempo</label><input id="tempo-slider" type="range" min="30" max="240" value="100">
-<div class="settings"><label>Time signature<select id="meter"><option value="4,4">4 / 4</option><option value="2,4">2 / 4</option><option value="3,4">3 / 4</option><option value="5,4">5 / 4</option><option value="6,8">6 / 8</option><option value="9,8">9 / 8</option><option value="12,8">12 / 8</option></select></label><label>Subdivision<select id="subdivision"><option value="1">None</option><option value="2">Two per beat</option><option value="3">Three per beat</option><option value="4">Four per beat</option></select></label></div>
+<div class="settings"><label>Time signature<select id="meter"><option value="4,4">4 / 4</option><option value="2,4">2 / 4</option><option value="3,4">3 / 4</option><option value="5,4">5 / 4</option><option value="6,8">6 / 8</option><option value="9,8">9 / 8</option><option value="12,8">12 / 8</option></select></label><label>Subdivision<select id="subdivision"><option value="1">None</option><option value="2">2 per beat</option><option value="3">3 per beat</option><option value="4">4 per beat</option></select></label></div>
 <label class="check"><input id="accent" type="checkbox" checked> Accent the first beat <span id="meter-hint">Quarter-note beats</span></label>
 <div class="actions"><button id="tap" class="secondary">Tap tempo</button><button id="start" class="primary">Start metronome</button></div>
-<p class="hint">Tap four times to set the tempo. Keep tapping to refine it.</p>
+<p class="hint">Four taps to lock in. Keep tapping to refine.</p>
 </section>
 <section id="tuner" class="panel" role="tabpanel" aria-labelledby="tab-tuner" hidden>
 <div class="tuner-top"><span class="eyebrow">CHROMATIC TUNER</span><span id="listening" class="badge">MIC OFF</span></div>
@@ -32,7 +31,7 @@
 <p class="hint" id="transpose-hint">Concert B♭ is shown as written C.</p><button id="listen" class="primary full">Enable microphone</button><p class="hint">Audio stays on your device. Nothing is recorded or uploaded.</p>
 </section>
 <p id="notice" class="notice" role="status"></p>
-<footer><span>LESS FUSS. MORE MUSIC.</span></footer>
-<details id="help"><summary>How to use Pulse &amp; Pitch</summary><aside><h2>Made for the music stand.</h2><p>On iPhone, open in Safari. Choose Share → Add to Home Screen for an app-like experience. After the first online load, the app works offline.</p><p>Keep the app in the foreground and the phone unlocked. We request screen wake lock where available; iOS can still interrupt audio. Start sound or microphone with a tap.</p><p>For tuning, play one sustained note at a moderate volume, with the microphone a little away from the bell. ±5 cents is marked in tune. The frequency always shows the actual sounding pitch; the note name follows your transposition setting. The metronome stops when you switch to the tuner.</p><p>Some Bluetooth audio devices add latency or change microphone quality. The built-in microphone and speaker are the best starting point. Headphones help in a noisy room. This is a practice aid, not a laboratory reference.</p><p><a href="https://github.com/BruceTheButler/pulse-and-pitch">Source & feedback on GitHub</a></p></aside></details>
+<footer><div class="footer-mark" aria-hidden="true">P/P<span>↗︎</span></div><p>KEEP TIME.<br>MAKE WAVES.</p><span class="footer-index">NO CLOUD.<br>JUST SOUND.</span></footer>
+<details id="help"><summary>How to use Pulse &amp; Pitch</summary><aside><h2>Made for the music stand.</h2><p>On iPhone, open in Safari. Choose Share → Add to Home Screen for an app-like experience. After the first online load, the app works offline.</p><p>Keep the app in the foreground and the phone unlocked. We request screen wake lock where available; iOS can still interrupt audio. Start sound or microphone with a tap.</p><p>For tuning, play one sustained note at a moderate volume, with the microphone a little away from the instrument. ±5 cents is marked in tune. The frequency always shows the actual sounding pitch; the note name follows your transposition setting. The metronome stops when you switch to the tuner.</p><p>Some Bluetooth audio devices add latency or change microphone quality. The built-in microphone and speaker are the best starting point. Headphones help in a noisy room. This is a practice aid, not a laboratory reference.</p><p><a href="https://github.com/BruceTheButler/pulse-and-pitch">Source & feedback on GitHub</a></p></aside></details>
 </main><script type="module" src="app.js"></script>
 </body></html>

@@ -4,6 +4,10 @@ An iPhone-first metronome and single-note chromatic tuner for everyday music pra
 
 **Live app:** https://brucethebutler.github.io/pulse-and-pitch/
 
+## Interface
+
+A compact, high-contrast instrument panel: oversized readings, signal-yellow controls, angled beat markers and a custom geometric P/P icon. No introductory hero pushes the tools down the screen. Essential controls are designed to fit small portrait phone viewports; optional branding and help sit below them. Layout is responsive and supports safe-area insets and reduced motion.
+
 ## Features
 
 - Metronome from 30–240 BPM, with tap tempo that averages recent taps rather than just the last two.
