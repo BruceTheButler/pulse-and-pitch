@@ -1,5 +1,7 @@
 # Pulse & Pitch
 
+![Pulse & Pitch — find your rhythm, find your sound](assets/social-banner.png)
+
 An iPhone-first, dependency-free metronome and single-note chromatic tuner, with transposed displays for trumpet and cornet. Runs locally in your browser; microphone audio is never recorded or sent to a server.
 
 **Live app:** https://brucethebutler.github.io/pulse-and-pitch/
