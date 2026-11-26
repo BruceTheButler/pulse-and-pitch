@@ -30,7 +30,7 @@ Keep the app visible and the device unlocked. Backgrounding intentionally stops 
 
 ### iOS status-bar rendering
 
-Build 14 targets the native iOS top scroll-edge blur rather than moving controls below it. An empty, fixed 11px edge element supplies WebKit's status-bar color extension, which suppresses the top scroll pocket. Background clipping prevents the element painting over controls; it cannot intercept taps, takes no layout space, and follows light/dark colors. It is limited to standalone WebKit. The status-bar style remains default (not edge-to-edge translucent).
+Build 14 targets the native iOS top scroll-edge blur rather than moving controls below it. An empty, fixed 11px edge element supplies WebKit's status-bar color extension, intended to suppress the top scroll pocket. Adrian reports that the fade persists on Build 14, so this is not a verified fix. Background clipping prevents the element painting over controls; it cannot intercept taps, takes no layout space, and follows light/dark colors. It is limited to standalone WebKit. The status-bar style remains default (not edge-to-edge translucent).
 
 This uses an implementation detail, not a supported CSS opt-out. Browser checks cannot prove suppression of iOS system chrome: verify Build 14 on a physical installed iPhone at launch, after scrolling Help and returning, and in both themes. Future WebKit versions may change the heuristic.
 
@@ -71,3 +71,5 @@ Physical iPhone testing is still outstanding. Before relying on the app, check:
 
 No claim of physical iPhone testing is made by this repository.
 
+
+Display diagnostics under Help (Build 15) report installed mode, viewport geometry, safe-area inset and the computed edge surface. These stay on-device and allow physical-device evidence to guide the next fix.
