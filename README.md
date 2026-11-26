@@ -6,7 +6,7 @@ An iPhone-first metronome and single-note chromatic tuner for everyday music pra
 
 ## Interface
 
-A compact pocket chronometer: serif readings, discrete beat dots and a clock-hand icon. Light/dark appearances follow the device automatically. No introductory hero pushes the tools down the screen. Essential controls are designed to fit small portrait phone viewports; optional branding and help sit below them. Layout is responsive and supports safe-area insets and reduced motion.
+A compact, typography-led interface: oversized sans-serif readings, responsive beat strips, open space and a custom split-letter icon. Light/dark appearances follow the device automatically. No introductory hero pushes the tools down the screen. Essential controls are designed to fit small portrait phone viewports; optional branding and help sit below them. Layout is responsive and supports safe-area insets and reduced motion.
 
 ## Features
 
