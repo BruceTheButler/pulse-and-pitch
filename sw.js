@@ -1,5 +1,5 @@
-const CACHE = 'pulse-pitch-v11';
-const ASSETS = ['./','./index.html','./style.css?v=10','./app.js','./pitch.js','./tempo.js','./manifest.webmanifest','./icon.svg','./icon-192.png','./icon-512.png'];
+const CACHE = 'pulse-pitch-v12';
+const ASSETS = ['./','./index.html','./style.css?v=12','./app.js','./pitch.js','./tempo.js','./manifest.webmanifest','./icon.svg','./icon-192.png','./icon-512.png'];
 self.addEventListener('install', event => { event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS))); });
 self.addEventListener('activate', event => { event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => (key.startsWith('brass-') || key.startsWith('pulse-pitch-')) && key !== CACHE).map(key => caches.delete(key))))); });
 self.addEventListener('fetch', event => {
