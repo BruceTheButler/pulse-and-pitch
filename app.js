@@ -232,20 +232,3 @@ $('refresh-app').onclick = async () => {
 // iOS standalone may ignore viewport zoom limits; cancel its pinch gesture too.
 document.addEventListener('gesturestart', event => event.preventDefault(), {passive:false});
 
-// Read-only diagnostics for installed iOS chrome; never transmitted.
-$('display-diagnostics').addEventListener('toggle', () => {
-  const probe = document.createElement('div');
-  probe.style.cssText = 'position:fixed;visibility:hidden;padding-top:env(safe-area-inset-top);pointer-events:none';
-  document.body.append(probe);
-  const safeTop = getComputedStyle(probe).paddingTop; probe.remove();
-  const strip = document.querySelector('.ios-status-surface');
-  const style = getComputedStyle(strip), rect = strip.getBoundingClientRect();
-  $('display-details').textContent = [
-    'Build 15', navigator.userAgent,
-    `Standalone: ${navigator.standalone === true}; display-mode: ${matchMedia('(display-mode: standalone)').matches}`,
-    `Screen: ${screen.width} × ${screen.height}; viewport: ${innerWidth} × ${innerHeight}`,
-    `Visual viewport: ${window.visualViewport?.width} × ${window.visualViewport?.height}; offset: ${window.visualViewport?.offsetTop}`,
-    `Safe top: ${safeTop}; scroll Y: ${scrollY}`,
-    `Edge surface: ${style.display}; ${rect.width} × ${rect.height}; top: ${rect.top}; color: ${style.backgroundColor}`
-  ].join('\n');
-});
