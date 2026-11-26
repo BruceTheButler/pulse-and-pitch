@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#122b2a"><meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="description" content="A pocket practice companion: precise metronome and private, on-device brass tuner.">
+<title>Brass · Practice companion</title>
+<link rel="icon" href="icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="icon-192.png"><link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+<header><a class="brand" href="./" aria-label="Brass home"><span class="brand-mark">♮</span> brass<span class="brand-dot">.</span></a><span class="eyebrow">A LITTLE EVERY DAY</span></header>
+<div class="intro"><p class="eyebrow">YOUR POCKET PRACTICE COMPANION</p><h1>Find your rhythm.<br><em>Find your sound.</em></h1></div>
+<nav aria-label="Practice tools"><button id="tab-metronome" class="tab active" aria-selected="true" aria-controls="metronome" role="tab">Metronome</button><button id="tab-tuner" class="tab" aria-selected="false" aria-controls="tuner" role="tab">Tuner</button></nav>
+<section id="metronome" class="panel" aria-labelledby="tab-metronome">
+<div id="beats" class="beats" aria-hidden="true"></div>
+<div class="tempo"><button id="slower" class="round" aria-label="Decrease tempo">−</button><div><label for="bpm" class="eyebrow">QUARTER NOTES / MIN</label><input id="bpm" type="number" min="30" max="240" value="100" inputmode="numeric"><span id="tempo-word">Andante</span></div><button id="faster" class="round" aria-label="Increase tempo">+</button></div>
+<label class="sr-only" for="tempo-slider">Tempo</label><input id="tempo-slider" type="range" min="30" max="240" value="100">
+<div class="settings"><label>Time signature<select id="meter"><option value="4,4">4 / 4</option><option value="2,4">2 / 4</option><option value="3,4">3 / 4</option><option value="5,4">5 / 4</option><option value="6,8">6 / 8</option><option value="9,8">9 / 8</option><option value="12,8">12 / 8</option></select></label><label>Subdivision<select id="subdivision"><option value="1">None</option><option value="2">Two per beat</option><option value="3">Three per beat</option><option value="4">Four per beat</option></select></label></div>
+<label class="check"><input id="accent" type="checkbox" checked> Accent the first beat <span id="meter-hint">Quarter-note beats</span></label>
+<div class="actions"><button id="tap" class="secondary">Tap tempo</button><button id="start" class="primary">Start metronome</button></div>
+<p class="hint">Timing comes from the audio clock, not the animation.</p>
+</section>
+<section id="tuner" class="panel" aria-labelledby="tab-tuner" hidden>
+<div class="tuner-top"><span class="eyebrow">CHROMATIC TUNER</span><span id="listening" class="badge">MIC OFF</span></div>
+<div class="note" id="note">—<sub></sub></div><p id="pitch-detail" class="pitch-detail">One clear, steady note.</p>
+<div class="gauge" aria-hidden="true"><div class="sweet-spot"></div><div class="gauge-center"></div><div id="needle" class="needle"></div></div><div class="gauge-labels"><span>−50 ♭</span><span>IN TUNE</span><span>♯ +50</span></div>
+<p id="tuning-status" class="tuning-status" role="status">Ready when you are</p>
+<div class="settings"><label>Note display<select id="transpose"><option value="2">B♭ trumpet / cornet</option><option value="0">Concert pitch (C)</option><option value="9">E♭ cornet / trumpet</option></select></label><label>Concert A · Hz<input id="reference" type="number" min="430" max="450" step="1" value="440" inputmode="numeric"></label></div>
+<p class="hint" id="transpose-hint">Concert B♭ is shown as written C.</p><button id="listen" class="primary full">Enable microphone</button><p class="hint">Audio stays on your device. Nothing is recorded or uploaded.</p>
+</section>
+<p id="notice" class="notice" role="status"></p>
+<footer><span>LESS FUSS. MORE MUSIC.</span><button id="help-toggle" aria-expanded="false" aria-controls="help">Using Brass ↗</button></footer>
+<aside id="help" hidden><h2>Made for the music stand.</h2><p>On iPhone, open in Safari. Choose Share → Add to Home Screen for an app-like experience. After the first online load, the app works offline.</p><p>Keep the app in the foreground and the phone unlocked. We request screen wake lock where available; iOS can still interrupt audio. Start sound or microphone with a tap.</p><p>BPM means quarter notes. In 6/8, 9/8 and 12/8 each light is an eighth note; groups of three are accented. For dotted-quarter 60, set BPM to 90.</p><p>For tuning, play one sustained note at a moderate volume, with the microphone a little away from the bell. ±5 cents is marked in tune. The frequency always shows the actual sounding pitch; the note name follows your transposition setting. The metronome stops when you switch to the tuner.</p><p>Some Bluetooth audio devices add latency or change microphone quality. The built-in microphone and speaker are the best starting point. Headphones help in a noisy room. This is a practice aid, not a laboratory reference.</p><p><a href="https://github.com/BruceTheButler/brass-practice">Source & feedback on GitHub</a></p></aside>
+</main><script type="module" src="app.js"></script>
+</body></html>
