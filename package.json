@@ -1,1 +1,1 @@
-{"name":"brass-practice","version":"1.0.0","private":true,"type":"module","scripts":{"test":"node --test","check":"node --check app.js && node --check pitch.js && node --check sw.js"}}
+{"name":"brass-practice","version":"1.0.0","private":true,"type":"module","scripts":{"test":"node --test","check":"node --check app.js && node --check tempo.js && node --check pitch.js && node --check sw.js"}}

@@ -6,7 +6,7 @@ An iPhone-first, dependency-free metronome and single-note chromatic tuner for t
 
 ## Features
 
-- Audio-clock metronome: 30–240 quarter notes/min, tap tempo, time signatures, subdivisions, downbeat and compound-meter group accents.
+- Audio-clock metronome: 30–240 quarter notes/min, tap tempo (four-tap start, rolling average of eight intervals), time signatures, subdivisions, downbeat and compound-meter group accents.
 - YIN pitch detection, roughly 80–1600 Hz; cents meter, stable-note median filtering, B♭/E♭ written or concert note names, concert A calibration 430–450 Hz.
 - Offline-capable installable PWA, saved preferences, optional screen wake lock.
 - Explicit microphone stop, interruption handling, no analytics, no third-party assets or dependencies.

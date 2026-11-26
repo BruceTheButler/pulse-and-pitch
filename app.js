@@ -1,7 +1,9 @@
 import { detectPitch, noteFor, beatDuration } from './pitch.js';
+import { createTapTempo } from './tempo.js';
+const tapTempo = createTapTempo();
 const $ = id => document.getElementById(id);
 let context, running = false, listening = false, starting = false, timer, frame, stream, source, analyser, wake;
-let nextTime = 0, step = 0, queue = [], voices = new Set(), taps = [], recent = [], lastHeard = 0, lastNote = '';
+let nextTime = 0, step = 0, queue = [], voices = new Set(), recent = [], lastHeard = 0, lastNote = '';
 let tunerGeneration = 0;
 const notice = text => { $('notice').textContent = text; };
 const config = () => ({ bpm: Number($('bpm').value), meter: $('meter').value.split(',').map(Number), subdivision: Number($('subdivision').value) });
@@ -110,10 +112,9 @@ $('faster').onclick = () => tempo(Number($('bpm').value) + 1);
 $('bpm').onchange = () => tempo($('bpm').value);
 $('tempo-slider').oninput = () => tempo($('tempo-slider').value);
 $('tap').onclick = () => {
-  const now = performance.now();
-  if (taps.length && now - taps.at(-1) > 2000) taps = [];
-  taps.push(now); taps = taps.slice(-6);
-  if (taps.length > 1) tempo(60000 / ((now - taps[0]) / (taps.length - 1)));
+  const result = tapTempo(performance.now());
+  if (result.bpm !== null) tempo(result.bpm);
+  $('tap').textContent = result.count < 4 ? `Tap tempo · ${result.count}/4` : 'Tap tempo';
 };
 for (const id of ['meter','subdivision']) $(id).onchange = () => { stopMetronome(); beats(); save(); };
 $('accent').onchange = save;
