@@ -131,7 +131,7 @@ document.querySelector('[role=tablist]').addEventListener('keydown', event => {
 function emptyPitch() {
   $('note').replaceChildren(document.createTextNode('—'));
   $('pitch-detail').textContent = 'One clear, steady note.'; $('needle').style.opacity = '0';
-  $('tuning-status').textContent = listening ? 'Listening for a steady note…' : 'Ready when you are';
+  $('tuning-status').textContent = listening ? 'Listening for a steady note…' : 'Enable the microphone to start tuning.';
   $('tuning-status').classList.remove('good'); lastNote = '';
 }
 function stopTuner() {
