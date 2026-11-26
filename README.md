@@ -1,25 +1,36 @@
 # Pulse & Pitch
 
-![Pulse & Pitch — find your rhythm, find your sound](assets/social-banner.png)
-
-An iPhone-first, dependency-free metronome and single-note chromatic tuner, with transposed displays for trumpet and cornet. Runs locally in your browser; microphone audio is never recorded or sent to a server.
+An iPhone-first metronome and single-note chromatic tuner for everyday music practice. Also works on desktop. Runs in your browser without dependencies; microphone audio is never recorded or sent to a server.
 
 **Live app:** https://brucethebutler.github.io/pulse-and-pitch/
 
 ## Features
 
-- Audio-clock metronome: 30–240 beats/min, tap tempo (four-tap start, rolling average of eight intervals), time signatures, subdivisions, downbeat accents and full-volume clicks.
-- YIN pitch detection, roughly 80–1600 Hz; cents meter, stable-note median filtering, written note names for all 12 instrument keys, or concert pitch (C), concert A calibration 430–450 Hz.
-- Offline-capable installable PWA, saved preferences, optional screen wake lock.
-- Explicit microphone stop, interruption handling, no analytics, no third-party assets or dependencies.
+- Metronome from 30–240 BPM, with tap tempo that averages recent taps rather than just the last two.
+- Time signatures, subdivisions, downbeat accents and full-volume clicks. Your device volume stays under your control.
+- Musical beat units: quarter-note beats in simple meters and dotted-quarter beats in 6/8, 9/8 and 12/8.
+- Change settings while playing. Tempo and subdivision changes carry on without resetting the bar; changing time signature starts a fresh bar at the next scheduled click.
+- Single-note chromatic tuner with a cents meter and stable-note filtering, covering roughly 80–1600 Hz.
+- Note displays for all 12 instrument keys, including B♭, E♭ and F, or concert pitch (C). Frequency always shows sounding pitch.
+- Concert A calibration from 430–450 Hz; ±5 cents is marked in tune.
+- Installable, offline-capable app with saved preferences and optional screen wake lock.
+- Explicit microphone stop, interruption handling, no analytics and no third-party dependencies.
 
-## iPhone
+## Using the app
 
-Open in Safari, tap Start or Enable microphone, and allow microphone access. Share → Add to Home Screen to install. Keep the app visible and the device unlocked; backgrounding intentionally stops audio and releases the microphone. Screen wake lock is best-effort, not a guarantee. A physical iPhone listening test is still required before relying on it for practice; automated tests do not establish hardware accuracy or iOS audio reliability.
+### iPhone
 
-Use one sustained note, with some space between the bell and microphone. Bluetooth can add latency and alter microphone processing. Note names can be transposed; the Hz reading always represents sounding pitch. In B♭ mode concert B♭3 displays written C4. In E♭ mode concert E♭4 displays written C5. ±5 cents is marked in tune.
+Open the live app in Safari. Tap Start for the metronome, or Enable microphone for the tuner and allow microphone access. To install, choose Share → Add to Home Screen.
 
-BPM follows the musical pulse: quarter notes in simple meters, dotted quarters in 6/8, 9/8 and 12/8 (two, three and four beats per bar). Settings change without stopping playback; a time-signature change starts a fresh bar at the next scheduled click. Tempo and subdivision changes take effect on the next beat without resetting the bar. Device volume is never changed.
+Keep the app visible and the device unlocked. Backgrounding intentionally stops audio and releases the microphone. Screen wake lock is best-effort, not a guarantee.
+
+### Tuning
+
+Play or sing one sustained note in a quiet space, leaving some distance from the microphone. Select your instrument's key to see written note names, or C for concert pitch. Bluetooth can add latency and alter microphone processing.
+
+### Desktop
+
+Open the same live app in a modern browser and allow microphone access when using the tuner.
 
 ## Development
 
@@ -31,15 +42,19 @@ npm test
 python3 -m http.server 8080
 ```
 
-Localhost supports microphone testing on desktop. A phone needs the HTTPS Pages URL, not an unsecured LAN address. Pure pitch tests use synthetic notes and brass-like harmonic mixtures at 44.1 and 48 kHz; they do not replace acoustic instrument tests.
+Localhost supports microphone testing on desktop. A phone needs the HTTPS Pages URL, not an unsecured LAN address.
+
+Pitch detection uses YIN. Automated tests use synthetic notes and harmonic mixtures at 44.1 and 48 kHz; these do not replace acoustic instrument tests or establish hardware accuracy.
 
 GitHub Actions runs checks, stages only public app assets, and deploys Pages from `main`. Pages must be configured with the GitHub Actions source. Increment the service-worker cache name when changing app assets. Existing open installations receive the new worker after closing/reopening; network-first fetches refresh assets when online.
 
 ## Device acceptance checklist
 
-- iPhone Safari: grant/deny microphone, start/stop, switch tabs, lock/unlock, incoming interruption, rotation, home-screen install, offline reopen.
-- Compare steady concert B♭3, F4, B♭4 and sharp/flat notes against a trusted tuner; check written display and alternate calibration.
-- Listen at 60/120 BPM and in 6/8; verify accents/subdivision, rapid stop and tempo changes.
-- Desktop Safari, Chrome and Firefox: microphone and audio output, keyboard controls, narrow/wide layout.
+Physical iPhone testing is still outstanding. Before relying on the app, check:
+
+- iPhone Safari: grant/deny microphone, start/stop, switch tabs, lock/unlock, incoming interruption, rotation, home-screen install and offline reopen.
+- Compare sustained notes across the usable range against a trusted tuner; check sharp/flat readings, transposed displays (including F) and alternate calibration.
+- Listen at 60/120 BPM and in 6/8, 9/8 and 12/8; verify accents, subdivisions, averaged tap tempo and settings changes during playback.
+- Desktop Safari, Chrome and Firefox: microphone and audio output, keyboard controls and narrow/wide layout.
 
 No claim of physical iPhone testing is made by this repository.
