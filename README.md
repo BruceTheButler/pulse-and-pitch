@@ -6,7 +6,7 @@ An iPhone-first metronome and single-note chromatic tuner for everyday music pra
 
 ## Interface
 
-A compact, high-contrast instrument panel: oversized readings, signal-yellow controls, angled beat markers and a custom geometric P/P icon. No introductory hero pushes the tools down the screen. Essential controls are designed to fit small portrait phone viewports; optional branding and help sit below them. Layout is responsive and supports safe-area insets and reduced motion.
+A compact pocket chronometer: engraved circular dials, serif readings, discrete beat dots and a clock-hand icon. Ivory and ink light/dark appearances follow the device automatically. No introductory hero pushes the tools down the screen. Essential controls are designed to fit small portrait phone viewports; optional branding and help sit below them. Layout is responsive and supports safe-area insets and reduced motion.
 
 ## Features
 
@@ -62,3 +62,4 @@ Physical iPhone testing is still outstanding. Before relying on the app, check:
 - Desktop Safari, Chrome and Firefox: microphone and audio output, keyboard controls and narrow/wide layout.
 
 No claim of physical iPhone testing is made by this repository.
+
