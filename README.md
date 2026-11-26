@@ -28,6 +28,14 @@ Open the live app in Safari. Tap Start for the metronome, or Enable microphone f
 
 Keep the app visible and the device unlocked. Backgrounding intentionally stops audio and releases the microphone. Screen wake lock is best-effort, not a guarantee.
 
+### iOS status-bar rendering
+
+Build 14 targets the native iOS top scroll-edge blur rather than moving controls below it. An empty, fixed 11px edge element supplies WebKit's status-bar color extension, which suppresses the top scroll pocket. Background clipping prevents the element painting over controls; it cannot intercept taps, takes no layout space, and follows light/dark colors. It is limited to standalone WebKit. The status-bar style remains default (not edge-to-edge translucent).
+
+This uses an implementation detail, not a supported CSS opt-out. Browser checks cannot prove suppression of iOS system chrome: verify Build 14 on a physical installed iPhone at launch, after scrolling Help and returning, and in both themes. Future WebKit versions may change the heuristic.
+
+References: [real-device investigation](https://zenn.dev/uakihir0/articles/260920-ios27-pwa-blur), [WebKit scroll-pocket predicate](https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/API/ios/WKWebViewIOS.mm), [fixed-container sampling](https://github.com/WebKit/WebKit/blob/main/Source/WebCore/page/LocalFrameView.cpp).
+
 ### Tuning
 
 Play or sing one sustained note in a quiet space, leaving some distance from the microphone. Select your instrument's key to see written note names, or C for concert pitch. Bluetooth can add latency and alter microphone processing.
