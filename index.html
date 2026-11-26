@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#122b2a"><meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#16162b"><meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="description" content="A pocket practice companion: precise metronome and private, on-device brass tuner.">
-<title>Brass · Practice companion</title>
+<meta name="description" content="A pocket practice companion: precise metronome and private, on-device chromatic tuner.">
+<title>Pulse & Pitch · Tuner and metronome</title>
 <link rel="icon" href="icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="icon-192.png"><link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="style.css">
 </head>
 <body>
 <main>
-<header><a class="brand" href="./" aria-label="Brass home"><span class="brand-mark">♮</span> brass<span class="brand-dot">.</span></a><span class="eyebrow">A LITTLE EVERY DAY</span></header>
+<header><a class="brand" href="./" aria-label="Pulse and Pitch home"><img class="brand-icon" src="icon.svg" alt=""> pulse<span class="brand-dot">&</span>pitch</a><span class="eyebrow">STAY IN THE GROOVE</span></header>
 <div class="intro"><p class="eyebrow">YOUR POCKET PRACTICE COMPANION</p><h1>Find your rhythm.<br><em>Find your sound.</em></h1></div>
 <nav aria-label="Practice tools" role="tablist"><button id="tab-metronome" class="tab active" aria-selected="true" aria-controls="metronome" role="tab">Metronome</button><button id="tab-tuner" class="tab" tabindex="-1" aria-selected="false" aria-controls="tuner" role="tab">Tuner</button></nav>
 <section id="metronome" class="panel" role="tabpanel" aria-labelledby="tab-metronome">
@@ -31,7 +31,7 @@
 <p class="hint" id="transpose-hint">Concert B♭ is shown as written C.</p><button id="listen" class="primary full">Enable microphone</button><p class="hint">Audio stays on your device. Nothing is recorded or uploaded.</p>
 </section>
 <p id="notice" class="notice" role="status"></p>
-<footer><span>LESS FUSS. MORE MUSIC.</span><button id="help-toggle" aria-expanded="false" aria-controls="help">Using Brass ↗</button></footer>
-<aside id="help" hidden><h2>Made for the music stand.</h2><p>On iPhone, open in Safari. Choose Share → Add to Home Screen for an app-like experience. After the first online load, the app works offline.</p><p>Keep the app in the foreground and the phone unlocked. We request screen wake lock where available; iOS can still interrupt audio. Start sound or microphone with a tap.</p><p>BPM means quarter notes. In 6/8, 9/8 and 12/8 each light is an eighth note; groups of three are accented. For dotted-quarter 60, set BPM to 90.</p><p>For tuning, play one sustained note at a moderate volume, with the microphone a little away from the bell. ±5 cents is marked in tune. The frequency always shows the actual sounding pitch; the note name follows your transposition setting. The metronome stops when you switch to the tuner.</p><p>Some Bluetooth audio devices add latency or change microphone quality. The built-in microphone and speaker are the best starting point. Headphones help in a noisy room. This is a practice aid, not a laboratory reference.</p><p><a href="https://github.com/BruceTheButler/brass-practice">Source & feedback on GitHub</a></p></aside>
+<footer><span>LESS FUSS. MORE MUSIC.</span></footer>
+<details id="help"><summary>How to use Pulse &amp; Pitch</summary><aside><h2>Made for the music stand.</h2><p>On iPhone, open in Safari. Choose Share → Add to Home Screen for an app-like experience. After the first online load, the app works offline.</p><p>Keep the app in the foreground and the phone unlocked. We request screen wake lock where available; iOS can still interrupt audio. Start sound or microphone with a tap.</p><p>BPM means quarter notes. In 6/8, 9/8 and 12/8 each light is an eighth note; groups of three are accented. For dotted-quarter 60, set BPM to 90.</p><p>For tuning, play one sustained note at a moderate volume, with the microphone a little away from the bell. ±5 cents is marked in tune. The frequency always shows the actual sounding pitch; the note name follows your transposition setting. The metronome stops when you switch to the tuner.</p><p>Some Bluetooth audio devices add latency or change microphone quality. The built-in microphone and speaker are the best starting point. Headphones help in a noisy room. This is a practice aid, not a laboratory reference.</p><p><a href="https://github.com/BruceTheButler/pulse-and-pitch">Source & feedback on GitHub</a></p></aside></details>
 </main><script type="module" src="app.js"></script>
 </body></html>

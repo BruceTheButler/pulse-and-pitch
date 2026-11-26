@@ -199,7 +199,6 @@ function transposition() {
 }
 $('transpose').onchange = transposition;
 $('reference').onchange = () => { $('reference').value = Math.max(430,Math.min(450,Math.round(Number($('reference').value) || 440))); recent = []; emptyPitch(); save(); };
-$('help-toggle').onclick = () => { $('help').hidden = !$('help').hidden; $('help-toggle').setAttribute('aria-expanded',String(!$('help').hidden)); };
 document.addEventListener('visibilitychange',() => { if (document.hidden) { const active = running || listening; stopMetronome(); stopTuner(); if (active) notice('Paused while the app was in the background. Tap Start to resume.'); } });
 window.addEventListener('pagehide',() => {stopMetronome(); stopTuner();});
 beats(); tempo($('bpm').value); transposition();

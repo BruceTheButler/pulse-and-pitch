@@ -1,8 +1,8 @@
-# Brass · Practice companion
+# Pulse & Pitch
 
-An iPhone-first, dependency-free metronome and single-note chromatic tuner for trumpet and cornet. Runs locally in your browser; microphone audio is never recorded or sent to a server.
+An iPhone-first, dependency-free metronome and single-note chromatic tuner, with transposed displays for trumpet and cornet. Runs locally in your browser; microphone audio is never recorded or sent to a server.
 
-**Live app:** https://brucethebutler.github.io/brass-practice/
+**Live app:** https://brucethebutler.github.io/pulse-and-pitch/
 
 ## Features
 
