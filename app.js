@@ -1,3 +1,4 @@
+import { setAudioSession } from './audio-session.js';
 import { detectPitch, noteFor } from './pitch.js';
 import { createTapTempo, beatsPerBar, createBeatCursor } from './tempo.js';
 const tapTempo = createTapTempo();
@@ -23,7 +24,8 @@ function save() {
   saved.accent = $('accent').checked;
   try { localStorage.setItem('brass-settings', JSON.stringify(saved)); } catch {}
 }
-async function audio() {
+async function audio(mode) {
+  setAudioSession(navigator, mode);
   if (!context || context.state === 'closed') {
     const Audio = window.AudioContext || window.webkitAudioContext;
     if (!Audio) throw new Error('Web Audio is not available in this browser. Try Safari, Chrome or Firefox.');
@@ -97,7 +99,7 @@ $('start').onclick = async () => {
   if (starting) return;
   starting = true;
   try {
-    await audio();
+    await audio('playback');
     if (document.hidden) return;
     tempo($('bpm').value); stopTuner(); running = true; cursor = createBeatCursor(); nextTime = context.currentTime + 0.06;
     $('start').textContent = 'Stop metronome'; $('start').classList.add('running'); notice('Keep this app visible and your phone unlocked.');
@@ -162,7 +164,7 @@ $('listen').onclick = async () => {
   $('listen').disabled = true; $('listen').textContent = 'Waiting for microphone…'; notice('');
   let acquired;
   try {
-    await audio();
+    await audio('auto');
     acquired = await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false},video:false});
     if (generation !== tunerGeneration || document.hidden) { acquired.getTracks().forEach(t => t.stop()); return; }
     stream = acquired; source = context.createMediaStreamSource(stream); analyser = context.createAnalyser(); analyser.fftSize = 4096; source.connect(analyser);

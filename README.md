@@ -24,6 +24,9 @@ A compact, typography-led interface: oversized sans-serif readings, responsive b
 
 ### iPhone
 
+The metronome requests a media-playback audio session so it can sound while the ringer is silent on supported iOS versions. It does not change device volume; playback may interrupt other apps’ audio. Browsers without the Audio Session API retain their default behavior. Microphone mode restores automatic session selection.
+
+
 Open the live app in Safari. Tap Start for the metronome, or Enable microphone for the tuner and allow microphone access. To install, choose Share → Add to Home Screen.
 
 Keep the app visible and the device unlocked. Backgrounding intentionally stops audio and releases the microphone. Screen wake lock is best-effort, not a guarantee.

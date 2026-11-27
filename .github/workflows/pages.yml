@@ -27,7 +27,7 @@ jobs:
       - name: Stage only public app files
         run: |
           mkdir -p _site/assets
-          cp index.html style.css app.js pitch.js tempo.js sw.js manifest.webmanifest icon.svg icon-192.png icon-512.png _site/
+          cp index.html style.css app.js audio-session.js pitch.js tempo.js sw.js manifest.webmanifest icon.svg icon-192.png icon-512.png _site/
           cp assets/social-banner.png _site/assets/
       - uses: actions/upload-pages-artifact@v3
         with:
